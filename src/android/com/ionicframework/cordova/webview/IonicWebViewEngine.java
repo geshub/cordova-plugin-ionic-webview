@@ -13,6 +13,7 @@ import android.util.Log;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
+import android.view.View;
 import org.apache.cordova.ConfigXmlParser;
 import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPreferences;
