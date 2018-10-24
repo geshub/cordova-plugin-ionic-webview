@@ -65,6 +65,11 @@ public class IonicWebViewEngine extends SystemWebViewEngine {
     WebViewLocalServer.AssetHostingDetails ahd = localServer.hostAssets("www");
 
     webView.setWebViewClient(new ServerClient(this, parser));
+    
+    // Remove google autofill for Android > 8 
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+    webView.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO);
+    }
 
     super.init(parentWebView, cordova, client, resourceApi, pluginManager, nativeToJsMessageQueue);
     SharedPreferences prefs = cordova.getActivity().getApplicationContext().getSharedPreferences(IonicWebView.WEBVIEW_PREFS_NAME, Activity.MODE_PRIVATE);
