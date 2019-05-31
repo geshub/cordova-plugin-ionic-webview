@@ -104,9 +104,6 @@
 // expose private configuration value required for background operation
 @interface WKWebViewConfiguration ()
 
-@property (setter=_setAlwaysRunsAtForegroundPriority:, nonatomic) bool _alwaysRunsAtForegroundPriority;
-@property (setter=_setAlwaysRunsAtForegroundPriority:, nonatomic) bool alwaysRunsAtForegroundPriority;
-
 @end
 
 
@@ -459,21 +456,6 @@ NSTimer *timer;
         }
     }
 
-     //required to stop wkwebview suspending in background too eagerly (as used in background mode plugin)
-    //updated for iOS 12.2
-    if(![settings cordovaBoolSettingForKey:@"WKSuspendInBackground" defaultValue:YES]){
-        if (@available(iOS 12.2, *)) {
-            // do stuff for iOS 12.2 and newer
-            NSLog(@"iOS 12.2+ detected");
-            configuration.alwaysRunsAtForegroundPriority = ![settings cordovaBoolSettingForKey:@"WKSuspendInBackground" defaultValue:YES];
-        } else {
-            // do stuff for iOS 12.1 and older
-            NSLog(@"iOS Below 12.2 detected");
-            configuration._alwaysRunsAtForegroundPriority = ![settings cordovaBoolSettingForKey:@"WKSuspendInBackground" defaultValue:YES];
-        }
-        NSLog(@"CDVWKWebViewEngine: Suspend in background disabled");
-    }
- 
     wkWebView.configuration.preferences.minimumFontSize = [settings cordovaFloatSettingForKey:@"MinimumFontSize" defaultValue:0.0];
     wkWebView.allowsLinkPreview = [settings cordovaBoolSettingForKey:@"AllowLinkPreview" defaultValue:NO];
     wkWebView.scrollView.scrollEnabled = [settings cordovaBoolSettingForKey:@"ScrollEnabled" defaultValue:NO];
