@@ -72,6 +72,7 @@ public class IonicWebViewEngine extends SystemWebViewEngine {
     
     // Remove google autofill for Android > 8 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+    Log.d(TAG, "Remove google autofill for Android > 8");
     webView.setImportantForAutofill(View.IMPORTANT_FOR_AUTOFILL_NO);
     }
 
