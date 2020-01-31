@@ -81,25 +81,6 @@ public class IonicWebViewEngine extends SystemWebViewEngine {
       final WebSettings settings = webView.getSettings();
       int mode = preferences.getInteger("MixedContentMode", 0);
       settings.setMixedContentMode(mode);
-      
-      // WK test settings
-      Log.d(TAG, "Test some optimization settings !");
-      settings.setRenderPriority(WebSettings.RenderPriority.HIGH); // deprecated in api 18
-      settings.setLoadWithOverviewMode(true);
-      settings.setUseWideViewPort(true);
-      settings.setSupportZoom(true);
-      settings.setBuiltInZoomControls(false);
-      settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-      //settings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-      settings.setDomStorageEnabled(true);
-      webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-      webView.setScrollbarFadingEnabled(true);
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-      webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
-      } else {
-      webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-      }
-      
     }
     SharedPreferences prefs = cordova.getActivity().getApplicationContext().getSharedPreferences(IonicWebView.WEBVIEW_PREFS_NAME, Activity.MODE_PRIVATE);
     String path = prefs.getString(IonicWebView.CDV_SERVER_PATH, null);
